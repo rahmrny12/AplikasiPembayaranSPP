@@ -130,24 +130,31 @@ namespace AplikasiPembayaranSPP.Master
 
         private void UpdateData()
         {
-            using (SqlConnection conn = Helper.getConnected())
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE Petugas SET " +
-                    "Username=@Username, " +
-                    "Password=@Password, " +
-                    "NamaPetugas=@NamaPetugas, " +
-                    "Level=@Level " +
-                    "WHERE IDPetugas=@ID", conn);
-                cmd.Parameters.AddWithValue("@ID", currentID);
-                cmd.Parameters.AddWithValue("@Username", inputUsername.Text);
-                cmd.Parameters.AddWithValue("@Password", inputPassword.Text);
-                cmd.Parameters.AddWithValue("@NamaPetugas", inputNamaPetugas.Text);
-                cmd.Parameters.AddWithValue("@Level", inputLevel.Text);
+                using (SqlConnection conn = Helper.getConnected())
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("UPDATE Petugas SET " +
+                        "Username=@Username, " +
+                        "Password=@Password, " +
+                        "NamaPetugas=@NamaPetugas, " +
+                        "Level=@Level " +
+                        "WHERE IDPetugas=@ID", conn);
+                    cmd.Parameters.AddWithValue("@ID", currentID);
+                    cmd.Parameters.AddWithValue("@Username", inputUsername.Text);
+                    cmd.Parameters.AddWithValue("@Password", inputPassword.Text);
+                    cmd.Parameters.AddWithValue("@NamaPetugas", inputNamaPetugas.Text);
+                    cmd.Parameters.AddWithValue("@Level", inputLevel.Text);
 
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Berhasil mengedit Petugas.", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadPetugas();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Berhasil mengedit Petugas.", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadPetugas();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gagal mengedit Petugas. Pesan error : " + ex.Message, "Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -191,17 +198,31 @@ namespace AplikasiPembayaranSPP.Master
         {
             if (currentID != null)
             {
-                if (MessageBox.Show("Yakin ingin menghapus petugas?", "Konfirmasi", MessageBoxButtons.OK, MessageBoxIcon.Warning) == DialogResult.OK)
+                if (MessageBox.Show("Yakin ingin menghapus petugas?", "Konfirmasi", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
-                    using (SqlConnection conn = Helper.getConnected())
+                    try
                     {
-                        conn.Open();
-                        SqlCommand cmd = new SqlCommand("DELETE FROM Petugas WHERE IDPetugas='" + currentID + "'", conn);
+                        using (SqlConnection conn = Helper.getConnected())
+                        {
+                            conn.Open();
+                            SqlCommand cmd = new SqlCommand("DELETE FROM Petugas WHERE IDPetugas='" + currentID + "'", conn);
 
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Berhasil menghapus petugas.", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadPetugas();
-                    } 
+                            cmd.ExecuteNonQuery();
+                            MessageBox.Show("Berhasil menghapus petugas.", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadPetugas();
+                        }
+                    }
+                    catch (SqlException ex)
+                    {
+                        if (ex.Number == 547)
+                        {
+                            MessageBox.Show("Petugas sudah terikat transaksi..!", "Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Gagal menghapus petugas. Pesan error : " + ex.Message, "Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                 }
             }
         }

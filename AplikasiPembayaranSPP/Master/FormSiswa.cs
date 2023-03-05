@@ -231,6 +231,19 @@ namespace AplikasiPembayaranSPP.Master
             {
                 MessageBox.Show("Lengkapi kolom yang tersedia.", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
+            } else if (inputNISN.Text.Length != 10)
+            {
+                MessageBox.Show("Kolom NISN harus 10 digit.", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            } else if (inputNIS.Text.Length != 8)
+            {
+                MessageBox.Show("Kolom NIS harus 8 digit.", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            else if (inputNoTelp.Text.Length > 13 || inputNoTelp.Text.Length < 10)
+            {
+                MessageBox.Show("Kolom Nomor Telepon harus di antara 10 - 13 digit.", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
             return true;
         }
@@ -257,16 +270,30 @@ namespace AplikasiPembayaranSPP.Master
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Yakin ingin menghapus siswa?", "Konfirmasi", MessageBoxButtons.OK, MessageBoxIcon.Warning) == DialogResult.OK)
+            if (MessageBox.Show("Yakin ingin menghapus siswa?", "Konfirmasi", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
-                using (SqlConnection conn = Helper.getConnected())
+                try
                 {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand("DELETE FROM Siswa WHERE NISN='" + inputNISN.Text + "'", conn);
+                    using (SqlConnection conn = Helper.getConnected())
+                    {
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand("DELETE FROM Siswa WHERE NISN='" + inputNISN.Text + "'", conn);
 
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Berhasil menghapus siswa.", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadSiswa();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Berhasil menghapus siswa.", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadSiswa();
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 547)
+                    {
+                        MessageBox.Show("Siswa sudah melakukan pembayaran..!", "Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Gagal menghapus siswa. Pesan error : " + ex.Message, "Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }

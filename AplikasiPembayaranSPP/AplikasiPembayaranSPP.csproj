@@ -64,6 +64,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSetStruk.cs">
+      <DependentUpon>DataSetStruk.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetStruk.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetStruk.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DB_UKK_PEMBAYARAN_SPPDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -74,6 +82,12 @@
     </Compile>
     <Compile Include="FormCariSiswa.Designer.cs">
       <DependentUpon>FormCariSiswa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormCetakStruk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCetakStruk.Designer.cs">
+      <DependentUpon>FormCetakStruk.cs</DependentUpon>
     </Compile>
     <Compile Include="FormLaporan.cs">
       <SubType>Form</SubType>
@@ -137,6 +151,10 @@
     <EmbeddedResource Include="bin\Debug\ReportRiwayatTransaksi.rdlc" />
     <EmbeddedResource Include="FormCariSiswa.resx">
       <DependentUpon>FormCariSiswa.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormCetakStruk.resx">
+      <DependentUpon>FormCetakStruk.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLaporan.resx">
       <DependentUpon>FormLaporan.cs</DependentUpon>
@@ -175,6 +193,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ReportCetakStruk.rdlc" />
+    <None Include="DataSetStruk.xsc">
+      <DependentUpon>DataSetStruk.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetStruk.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetStruk.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSetStruk.xss">
+      <DependentUpon>DataSetStruk.xsd</DependentUpon>
+    </None>
     <None Include="DB_UKK_PEMBAYARAN_SPPDataSet.xsc">
       <DependentUpon>DB_UKK_PEMBAYARAN_SPPDataSet.xsd</DependentUpon>
     </None>
@@ -210,6 +240,12 @@
     <None Include="Resources\school-white.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\icons8-calendar-31-24.png" />
+    <None Include="Resources\icons8-cash24.png.png" />
+    <None Include="Resources\icons8-school-24.png" />
+    <None Include="Resources\icons8-security-guard-24.png" />
+    <None Include="Resources\icons8-student-male-24.png" />
+    <None Include="Resources\icons8-transaction-24.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

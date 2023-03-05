@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.viewHistoriPembayaranBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dB_UKK_PEMBAYARAN_SPPDataSet = new AplikasiPembayaranSPP.DB_UKK_PEMBAYARAN_SPPDataSet();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
@@ -51,9 +50,6 @@
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "DataSet1";
-            reportDataSource1.Value = this.viewHistoriPembayaranBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "AplikasiPembayaranSPP.ReportRiwayatTransaksi.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(0, 0);
             this.reportViewer1.Name = "reportViewer1";
@@ -74,6 +70,7 @@
             this.Name = "FormLaporan";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormLaporan";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FormLaporan_Load);
             ((System.ComponentModel.ISupportInitialize)(this.viewHistoriPembayaranBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dB_UKK_PEMBAYARAN_SPPDataSet)).EndInit();

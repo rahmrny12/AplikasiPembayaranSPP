@@ -175,14 +175,23 @@ namespace AplikasiPembayaranSPP.Master
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = Helper.getConnected())
+            if (currentID != null)
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("DELETE FROM SPP WHERE IDSPP='" + currentID + "'", conn);
+                if (MessageBox.Show("Yakin ingin menghapus SPP?", "Konfirmasi", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                {
+                    using (SqlConnection conn = Helper.getConnected())
+                    {
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand("DELETE FROM SPP WHERE IDSPP='" + currentID + "'", conn);
 
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Berhasil menghapus SPP.", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadSPP();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Berhasil menghapus SPP.", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadSPP();
+                    }
+                }
+            } else
+            {
+                MessageBox.Show("Pilih SPP yang ingin dihapus.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -207,6 +216,35 @@ namespace AplikasiPembayaranSPP.Master
                 inputTahun.Text = row.Cells["Tahun"].Value.ToString();
                 inputNominal.Text = row.Cells["Nominal"].Value.ToString();
             }
+        }
+
+        private void dataGridViewSPP_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            //DataGridViewRow row = dataGridViewSPP.Rows[e.RowIndex];
+            //if (row.Cells["IDSPP"].Value != null)
+            //{
+            //    using (SqlConnection conn = Helper.getConnected())
+            //    {
+            //        conn.Open();
+            //        SqlCommand cmd = new SqlCommand("UPDATE SPP SET " +
+            //            "Tahun=@Tahun, " +
+            //            "Nominal=@Nominal " +
+            //            "WHERE IDSPP=@IDSPP", conn);
+            //        cmd.Parameters.AddWithValue("@IDSPP", row.Cells["IDSPP"].Value);
+            //        cmd.Parameters.AddWithValue("@Tahun", row.Cells["Tahun"].Value);
+            //        cmd.Parameters.AddWithValue("@Nominal", row.Cells["Nominal"].Value);
+
+            //        cmd.ExecuteNonQuery();
+            //        MessageBox.Show("Berhasil mengedit SPP.", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        LoadSPP();
+            //    }
+            //}
+
+        }
+
+        private void dataGridViewSPP_CellValuePushed(object sender, DataGridViewCellValueEventArgs e)
+        {
+
         }
     }
 }

@@ -117,4 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="navTransaksi.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EAAACxABrSO9dQAAARxJREFUSEvtlDFuwkAQRY2IEAfgBCkjOm5AwwU4An1KekAKaVLmBIge5QYB0lKn
+        RQJRIpQWOW/sD4uX4GDZFeJJT3j/rGcwCwR3riYMwzkWxVRtHSoUhto6lBs9RZmxe+MWKQO0TEBcwVdc
+        4wqHlqmcgDxCS4fySwOsoc9Q5QSq/T+ASzv06LB4tXfts/L3GVEFtHQoPx0ww09dpw047jOiCmjpUH5e
+        AOK/PqIXlROolnmAHbINsSfJd8iQ52vaj1ukDygEtXWQTeNSIRwP/Qbh8R6xg2PcoM83vmMba7rN7nvA
+        w+/lSXE6bCxhHZ9xgls8ZY8LfMOlBWD/VyW1yAY3lrGBXfzAHfqMtD0/NKtiEwf4hT/YUvnONQTBLznX
+        Gw7tMqnhAAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>

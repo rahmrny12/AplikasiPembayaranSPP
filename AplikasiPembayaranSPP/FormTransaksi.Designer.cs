@@ -29,10 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.inputTotalBayar = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.btnTambah = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.inputKembalian = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
-            this.inputTotalBayar = new System.Windows.Forms.NumericUpDown();
+            this.inputCash = new System.Windows.Forms.NumericUpDown();
             this.inputTanggalBayar = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.inputPetugas = new System.Windows.Forms.TextBox();
@@ -62,10 +65,9 @@
             this.TanggalBayar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.dataGridViewBayarSPP = new System.Windows.Forms.DataGridView();
-            this.btnTambah = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inputKembalian)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inputTotalBayar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inputCash)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHistoriSPP)).BeginInit();
@@ -75,11 +77,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.inputTotalBayar);
+            this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.btnTambah);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.inputKembalian);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.inputTotalBayar);
+            this.groupBox1.Controls.Add(this.inputCash);
             this.groupBox1.Controls.Add(this.inputTanggalBayar);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.inputPetugas);
@@ -95,17 +99,52 @@
             this.groupBox1.ForeColor = System.Drawing.Color.Black;
             this.groupBox1.Location = new System.Drawing.Point(12, 300);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(506, 282);
+            this.groupBox1.Size = new System.Drawing.Size(506, 338);
             this.groupBox1.TabIndex = 40;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Form Pembayaran SPP";
+            // 
+            // inputTotalBayar
+            // 
+            this.inputTotalBayar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.inputTotalBayar.ForeColor = System.Drawing.Color.SteelBlue;
+            this.inputTotalBayar.Location = new System.Drawing.Point(264, 136);
+            this.inputTotalBayar.Name = "inputTotalBayar";
+            this.inputTotalBayar.ReadOnly = true;
+            this.inputTotalBayar.Size = new System.Drawing.Size(236, 22);
+            this.inputTotalBayar.TabIndex = 50;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.SteelBlue;
+            this.label13.Location = new System.Drawing.Point(264, 120);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(62, 13);
+            this.label13.TabIndex = 49;
+            this.label13.Text = "Total Bayar";
+            // 
+            // btnTambah
+            // 
+            this.btnTambah.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnTambah.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTambah.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTambah.ForeColor = System.Drawing.Color.White;
+            this.btnTambah.Location = new System.Drawing.Point(167, 177);
+            this.btnTambah.Name = "btnTambah";
+            this.btnTambah.Size = new System.Drawing.Size(75, 32);
+            this.btnTambah.TabIndex = 47;
+            this.btnTambah.Text = "Tambah";
+            this.btnTambah.UseVisualStyleBackColor = false;
+            this.btnTambah.Click += new System.EventHandler(this.btnTambah_Click);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label12.Location = new System.Drawing.Point(264, 171);
+            this.label12.Location = new System.Drawing.Point(264, 220);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(60, 13);
             this.label12.TabIndex = 46;
@@ -118,7 +157,7 @@
             0,
             0,
             0});
-            this.inputKembalian.Location = new System.Drawing.Point(267, 187);
+            this.inputKembalian.Location = new System.Drawing.Point(267, 236);
             this.inputKembalian.Maximum = new decimal(new int[] {
             1000000000,
             0,
@@ -134,33 +173,34 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label11.Location = new System.Drawing.Point(264, 120);
+            this.label11.Location = new System.Drawing.Point(264, 169);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(62, 13);
+            this.label11.Size = new System.Drawing.Size(32, 13);
             this.label11.TabIndex = 44;
-            this.label11.Text = "Total Bayar";
+            this.label11.Text = "Cash";
             // 
-            // inputTotalBayar
+            // inputCash
             // 
-            this.inputTotalBayar.Increment = new decimal(new int[] {
+            this.inputCash.Increment = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.inputTotalBayar.Location = new System.Drawing.Point(267, 136);
-            this.inputTotalBayar.Maximum = new decimal(new int[] {
+            this.inputCash.Location = new System.Drawing.Point(267, 185);
+            this.inputCash.Maximum = new decimal(new int[] {
             1000000000,
             0,
             0,
             0});
-            this.inputTotalBayar.Name = "inputTotalBayar";
-            this.inputTotalBayar.Size = new System.Drawing.Size(233, 22);
-            this.inputTotalBayar.TabIndex = 42;
-            this.inputTotalBayar.ThousandsSeparator = true;
-            this.inputTotalBayar.ValueChanged += new System.EventHandler(this.inputTotalBayar_ValueChanged);
+            this.inputCash.Name = "inputCash";
+            this.inputCash.Size = new System.Drawing.Size(233, 22);
+            this.inputCash.TabIndex = 42;
+            this.inputCash.ThousandsSeparator = true;
+            this.inputCash.ValueChanged += new System.EventHandler(this.inputCash_ValueChanged);
             // 
             // inputTanggalBayar
             // 
+            this.inputTanggalBayar.Enabled = false;
             this.inputTanggalBayar.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputTanggalBayar.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.inputTanggalBayar.Location = new System.Drawing.Point(264, 46);
@@ -203,11 +243,12 @@
             // 
             // btnSubmit
             // 
+            this.btnSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSubmit.BackColor = System.Drawing.Color.SteelBlue;
             this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSubmit.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmit.ForeColor = System.Drawing.Color.White;
-            this.btnSubmit.Location = new System.Drawing.Point(425, 244);
+            this.btnSubmit.Location = new System.Drawing.Point(425, 288);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(75, 32);
             this.btnSubmit.TabIndex = 39;
@@ -475,7 +516,7 @@
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(524, 300);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(411, 282);
+            this.groupBox4.Size = new System.Drawing.Size(411, 338);
             this.groupBox4.TabIndex = 43;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "SPP Yang Ingin Dibayar";
@@ -493,28 +534,15 @@
             this.dataGridViewBayarSPP.Location = new System.Drawing.Point(9, 19);
             this.dataGridViewBayarSPP.Name = "dataGridViewBayarSPP";
             this.dataGridViewBayarSPP.ReadOnly = true;
-            this.dataGridViewBayarSPP.Size = new System.Drawing.Size(396, 245);
+            this.dataGridViewBayarSPP.Size = new System.Drawing.Size(396, 301);
             this.dataGridViewBayarSPP.TabIndex = 38;
-            // 
-            // btnTambah
-            // 
-            this.btnTambah.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnTambah.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTambah.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTambah.ForeColor = System.Drawing.Color.White;
-            this.btnTambah.Location = new System.Drawing.Point(167, 177);
-            this.btnTambah.Name = "btnTambah";
-            this.btnTambah.Size = new System.Drawing.Size(75, 32);
-            this.btnTambah.TabIndex = 47;
-            this.btnTambah.Text = "Tambah";
-            this.btnTambah.UseVisualStyleBackColor = false;
-            this.btnTambah.Click += new System.EventHandler(this.btnTambah_Click);
+            this.dataGridViewBayarSPP.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBayarSPP_CellContentClick);
             // 
             // FormTransaksi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(947, 589);
+            this.ClientSize = new System.Drawing.Size(947, 650);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -525,7 +553,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.inputKembalian)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.inputTotalBayar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inputCash)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -563,7 +591,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.NumericUpDown inputTotalBayar;
+        private System.Windows.Forms.NumericUpDown inputCash;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.NumericUpDown inputKembalian;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -572,5 +600,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DataGridView dataGridViewBayarSPP;
         private System.Windows.Forms.Button btnTambah;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox inputTotalBayar;
     }
 }

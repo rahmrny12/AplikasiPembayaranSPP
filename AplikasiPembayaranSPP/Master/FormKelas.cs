@@ -22,14 +22,31 @@ namespace AplikasiPembayaranSPP.Master
 
         private void FormKelas_Load(object sender, EventArgs e)
         {
+            LoadJurusan();
             LoadKelas();
             lockComponents();
+        }
+
+        private void LoadJurusan()
+        {
+            using (SqlConnection conn = Helper.getConnected())
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Jurusan", conn);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+                listKompetensiKeahlian.ValueMember = "IDJurusan";
+                listKompetensiKeahlian.DisplayMember = "KompetensiKeahlian";
+                listKompetensiKeahlian.DataSource = dt;
+            }
         }
 
         private void lockComponents()
         {
             inputNamaKelas.Enabled = false;
-            inputKompetensiKeahlian.Enabled = false;
+            listKompetensiKeahlian.Enabled = false;
 
             btnInsert.Enabled = true;
             btnUpdate.Enabled = true;
@@ -41,7 +58,7 @@ namespace AplikasiPembayaranSPP.Master
         private void unlockComponents()
         {
             inputNamaKelas.Enabled = true;
-            inputKompetensiKeahlian.Enabled = true;
+            listKompetensiKeahlian.Enabled = true;
 
             btnInsert.Enabled = false;
             btnUpdate.Enabled = false;
@@ -55,7 +72,7 @@ namespace AplikasiPembayaranSPP.Master
             using (SqlConnection conn = Helper.getConnected())
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Kelas WHERE " +
+                SqlCommand cmd = new SqlCommand("SELECT * FROM ViewKelas WHERE " +
                     "NamaKelas LIKE '%" + inputSearch.Text + "%' OR " +
                     "KompetensiKeahlian LIKE '%" + inputSearch.Text + "%'", conn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -63,6 +80,7 @@ namespace AplikasiPembayaranSPP.Master
 
                 da.Fill(dt);
                 dataGridViewKelas.DataSource = dt;
+                dataGridViewKelas.Columns["IDJurusan"].Visible = false;
             }
         }
 
@@ -91,10 +109,10 @@ namespace AplikasiPembayaranSPP.Master
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("INSERT INTO Kelas VALUES(" +
                     "@NamaKelas, " +
-                    "@KompetensiKeahlian" +
+                    "@IDJurusan" +
                     ")", conn);
                 cmd.Parameters.AddWithValue("@NamaKelas", inputNamaKelas.Text);
-                cmd.Parameters.AddWithValue("@KompetensiKeahlian", inputKompetensiKeahlian.Text);
+                cmd.Parameters.AddWithValue("@IDJurusan", listKompetensiKeahlian.SelectedValue);
 
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Berhasil menambahkan Kelas.", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -109,11 +127,11 @@ namespace AplikasiPembayaranSPP.Master
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("UPDATE Kelas SET " +
                     "NamaKelas=@NamaKelas, " +
-                    "KompetensiKeahlian=@KompetensiKeahlian " +
+                    "IDJurusan=@IDJurusan " +
                     "WHERE IDKelas=@IDKelas", conn);
                 cmd.Parameters.AddWithValue("@IDKelas", currentID);
                 cmd.Parameters.AddWithValue("@NamaKelas", inputNamaKelas.Text);
-                cmd.Parameters.AddWithValue("@KompetensiKeahlian", inputKompetensiKeahlian.Text);
+                cmd.Parameters.AddWithValue("@IDJurusan", listKompetensiKeahlian.SelectedValue);
 
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Berhasil mengedit Kelas.", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -126,7 +144,7 @@ namespace AplikasiPembayaranSPP.Master
         {
             if (
                 inputNamaKelas.Text == "" ||
-                inputKompetensiKeahlian.Text == ""
+                listKompetensiKeahlian.Text == ""
                 )
             {
                 MessageBox.Show("Lengkapi kolom yang tersedia.", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -149,14 +167,31 @@ namespace AplikasiPembayaranSPP.Master
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            using (SqlConnection conn = Helper.getConnected())
+            if (MessageBox.Show("Yakin ingin menghapus kelas?", "Konfirmasi", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("DELETE FROM Kelas WHERE IDKelas='" + currentID + "'", conn);
+                try
+                {
+                    using (SqlConnection conn = Helper.getConnected())
+                    {
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand("DELETE FROM Kelas WHERE IDKelas='" + currentID + "'", conn);
 
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Berhasil menghapus Kelas.", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadKelas();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Berhasil menghapus Kelas.", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadKelas();
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 547)
+                    {
+                        MessageBox.Show("Kelas sudah digunakan..!", "Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Gagal menghapus kelas. Pesan error : " + ex.Message, "Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
 
@@ -169,7 +204,7 @@ namespace AplikasiPembayaranSPP.Master
         private void ResetInputs()
         {
             inputNamaKelas.Text = string.Empty;
-            inputKompetensiKeahlian.Text = string.Empty;
+            listKompetensiKeahlian.Text = string.Empty;
         }
 
         private void dataGridViewKelas_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -179,7 +214,7 @@ namespace AplikasiPembayaranSPP.Master
                 DataGridViewRow row = dataGridViewKelas.Rows[e.RowIndex];
                 currentID = row.Cells["IDKelas"].Value.ToString();
                 inputNamaKelas.Text = row.Cells["NamaKelas"].Value.ToString();
-                inputKompetensiKeahlian.Text = row.Cells["KompetensiKeahlian"].Value.ToString();
+                listKompetensiKeahlian.SelectedValue = row.Cells["IDJurusan"].Value.ToString();
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,9 +15,12 @@ namespace AplikasiPembayaranSPP
 {
     public partial class FormLaporan : Form
     {
-        public FormLaporan()
+        DataTable dataLaporan;
+
+        public FormLaporan(DataTable dt)
         {
             InitializeComponent();
+            dataLaporan = dt;
         }
 
         private void FormLaporan_Load(object sender, EventArgs e)
@@ -28,21 +32,21 @@ namespace AplikasiPembayaranSPP
             //reportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("Histori", dB_UKK_PEMBAYARAN_SPPDataSet.ViewHistoriPembayaran));
             //this.reportViewer1.RefreshReport();
 
-            using (SqlConnection conn = Helper.getConnected())
-            {
-                SqlCommand cmd = new SqlCommand("SELECT * FROM ViewHistoriPembayaran", conn);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
+            //using (SqlConnection conn = Helper.getConnected())
+            //{
+                //SqlCommand cmd = new SqlCommand("SELECT * FROM ViewHistoriPembayaran", conn);
+                //SqlDataAdapter da = new SqlDataAdapter(cmd);
                 //DataTable dt = new DataTable();
-                da.Fill(this.dB_UKK_PEMBAYARAN_SPPDataSet.ViewHistoriPembayaran);
+                //da.Fill(this.dB_UKK_PEMBAYARAN_SPPDataSet.ViewHistoriPembayaran);
 
+                reportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("DataSet1", dataLaporan));
                 reportViewer1.LocalReport.ReportPath = "ReportRiwayatTransaksi.rdlc";
                 PageSettings settings = new System.Drawing.Printing.PageSettings();
                 settings.Landscape = true;
                 settings.PaperSize = new System.Drawing.Printing.PaperSize("A4", 827, 1470);
                 reportViewer1.SetPageSettings(settings);
-                //reportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("Histori", dt));
                 this.reportViewer1.RefreshReport();
-            }
+            //}
 
         }
     }

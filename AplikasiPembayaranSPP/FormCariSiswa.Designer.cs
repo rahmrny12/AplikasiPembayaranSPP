@@ -40,7 +40,7 @@
             this.inputSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.inputSearch.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.inputSearch.ForeColor = System.Drawing.Color.SteelBlue;
-            this.inputSearch.Location = new System.Drawing.Point(216, 47);
+            this.inputSearch.Location = new System.Drawing.Point(562, 47);
             this.inputSearch.Name = "inputSearch";
             this.inputSearch.Size = new System.Drawing.Size(181, 22);
             this.inputSearch.TabIndex = 32;
@@ -52,7 +52,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label1.Location = new System.Drawing.Point(12, 50);
+            this.label1.Location = new System.Drawing.Point(358, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(198, 13);
             this.label1.TabIndex = 33;
@@ -69,7 +69,7 @@
             this.dataGridViewSiswa.Location = new System.Drawing.Point(12, 75);
             this.dataGridViewSiswa.Name = "dataGridViewSiswa";
             this.dataGridViewSiswa.ReadOnly = true;
-            this.dataGridViewSiswa.Size = new System.Drawing.Size(385, 175);
+            this.dataGridViewSiswa.Size = new System.Drawing.Size(731, 175);
             this.dataGridViewSiswa.TabIndex = 34;
             this.dataGridViewSiswa.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSiswa_CellContentClick);
             this.dataGridViewSiswa.DoubleClick += new System.EventHandler(this.dataGridViewSiswa_DoubleClick);
@@ -89,7 +89,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(409, 262);
+            this.ClientSize = new System.Drawing.Size(755, 262);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dataGridViewSiswa);
             this.Controls.Add(this.inputSearch);

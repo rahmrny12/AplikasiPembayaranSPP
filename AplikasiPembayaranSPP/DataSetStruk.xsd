@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetStruk" targetNamespace="http://tempuri.org/DataSetStruk.xsd" xmlns:mstns="http://tempuri.org/DataSetStruk.xsd" xmlns="http://tempuri.org/DataSetStruk.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetStruk" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DataSetStruk" msprop:Generator_DataSetName="DataSetStruk">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTableBayarSPP" msprop:Generator_RowEvHandlerName="DataTableBayarSPPRowChangeEventHandler" msprop:Generator_RowDeletedName="DataTableBayarSPPRowDeleted" msprop:Generator_RowDeletingName="DataTableBayarSPPRowDeleting" msprop:Generator_RowEvArgName="DataTableBayarSPPRowChangeEvent" msprop:Generator_TablePropName="DataTableBayarSPP" msprop:Generator_RowChangedName="DataTableBayarSPPRowChanged" msprop:Generator_RowChangingName="DataTableBayarSPPRowChanging" msprop:Generator_TableClassName="DataTableBayarSPPDataTable" msprop:Generator_RowClassName="DataTableBayarSPPRow" msprop:Generator_TableVarName="tableDataTableBayarSPP" msprop:Generator_UserTableName="DataTableBayarSPP">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IDPembayaran" msprop:Generator_ColumnPropNameInRow="IDPembayaran" msprop:Generator_ColumnPropNameInTable="IDPembayaranColumn" msprop:Generator_ColumnVarNameInTable="columnIDPembayaran" msprop:Generator_UserColumnName="IDPembayaran" type="xs:string" minOccurs="0" />
+              <xs:element name="TahunDibayar" msprop:Generator_ColumnPropNameInRow="TahunDibayar" msprop:Generator_ColumnPropNameInTable="TahunDibayarColumn" msprop:Generator_ColumnVarNameInTable="columnTahunDibayar" msprop:Generator_UserColumnName="TahunDibayar" type="xs:string" minOccurs="0" />
+              <xs:element name="BulanDibayar" msprop:Generator_ColumnPropNameInRow="BulanDibayar" msprop:Generator_ColumnPropNameInTable="BulanDibayarColumn" msprop:Generator_ColumnVarNameInTable="columnBulanDibayar" msprop:Generator_UserColumnName="BulanDibayar" type="xs:string" minOccurs="0" />
+              <xs:element name="Nominal" msprop:Generator_ColumnPropNameInRow="Nominal" msprop:Generator_ColumnPropNameInTable="NominalColumn" msprop:Generator_ColumnVarNameInTable="columnNominal" msprop:Generator_UserColumnName="Nominal" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -23,10 +23,13 @@ namespace AplikasiPembayaranSPP
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            LoggedInUser.DestroySession();
-            this.Hide();
-            FormLogin formLogin = new FormLogin();
-            formLogin.Show();
+            if (MessageBox.Show("Yakin ingin logout?", "Konfirmasi", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            {
+                LoggedInUser.DestroySession();
+                this.Hide();
+                FormLogin formLogin = new FormLogin();
+                formLogin.Show(); 
+            }
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -60,12 +63,8 @@ namespace AplikasiPembayaranSPP
             formSiswa.Dock = DockStyle.Fill;
             formSiswa.FormBorderStyle = FormBorderStyle.None;
             panelForm.Controls.Add(formSiswa);
+            labelFormTitle.Text = "Data Siswa";
             formSiswa.Show();
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void navPetugas_Click(object sender, EventArgs e)
@@ -75,6 +74,7 @@ namespace AplikasiPembayaranSPP
                 panelForm.Controls.Remove(activeForm);
             }
 
+            labelFormTitle.Text = "Data Petugas";
             FormPetugas formPetugas = new FormPetugas();
             activeForm = formPetugas;
             formPetugas.TopLevel = false;
@@ -91,6 +91,7 @@ namespace AplikasiPembayaranSPP
                 panelForm.Controls.Remove(activeForm);
             }
 
+            labelFormTitle.Text = "Data Kelas";
             FormKelas formKelas = new FormKelas();
             activeForm = formKelas;
             formKelas.TopLevel = false;
@@ -100,26 +101,6 @@ namespace AplikasiPembayaranSPP
             formKelas.Show();
         }
 
-        private void panelForm_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel7_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void navTransaksi_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panelForm_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void navSPP_Click(object sender, EventArgs e)
         {
             if (activeForm != null)
@@ -127,6 +108,7 @@ namespace AplikasiPembayaranSPP
                 panelForm.Controls.Remove(activeForm);
             }
 
+            labelFormTitle.Text = "Data SPP";
             FormSPP formSPP = new FormSPP();
             activeForm = formSPP;
             formSPP.TopLevel = false;
@@ -143,6 +125,7 @@ namespace AplikasiPembayaranSPP
                 panelForm.Controls.Remove(activeForm);
             }
 
+            labelFormTitle.Text = "Transaksi Baru";
             FormTransaksi formTransaksi = new FormTransaksi();
             activeForm = formTransaksi;
             formTransaksi.TopLevel = false;
@@ -159,6 +142,7 @@ namespace AplikasiPembayaranSPP
                 panelForm.Controls.Remove(activeForm);
             }
 
+            labelFormTitle.Text = "Histori Transaksi";
             FormRiwayatTransaksi formRiwayatTransaksi = new FormRiwayatTransaksi();
             activeForm = formRiwayatTransaksi;
             formRiwayatTransaksi.TopLevel = false;
@@ -166,6 +150,14 @@ namespace AplikasiPembayaranSPP
             formRiwayatTransaksi.FormBorderStyle = FormBorderStyle.None;
             panelForm.Controls.Add(formRiwayatTransaksi);
             formRiwayatTransaksi.Show();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Yakin ingin keluar dari aplikasi?", "Konfirmasi", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            {
+                Application.Exit();
+            }
         }
     }
 }

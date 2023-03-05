@@ -5,7 +5,7 @@ namespace AplikasiPembayaranSPP
     internal class LoggedInUser
     {
         public static string IDPetugas = "2";
-        public static string NamaPetugas = "hamzah";
+        public static string NamaPetugas = "Hamzah";
         public static string Username = "hamzah";
         public static string Level = "admin";
 

@@ -196,20 +196,21 @@
             // 
             // dataGridViewSPP
             // 
-            this.dataGridViewSPP.AllowUserToAddRows = false;
-            this.dataGridViewSPP.AllowUserToDeleteRows = false;
             this.dataGridViewSPP.AllowUserToOrderColumns = true;
             this.dataGridViewSPP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewSPP.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewSPP.BackgroundColor = System.Drawing.Color.SteelBlue;
             this.dataGridViewSPP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSPP.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridViewSPP.Location = new System.Drawing.Point(275, 44);
+            this.dataGridViewSPP.MultiSelect = false;
             this.dataGridViewSPP.Name = "dataGridViewSPP";
-            this.dataGridViewSPP.ReadOnly = true;
             this.dataGridViewSPP.Size = new System.Drawing.Size(513, 289);
             this.dataGridViewSPP.TabIndex = 4;
             this.dataGridViewSPP.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSPP_CellClick);
+            this.dataGridViewSPP.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewSPP_CellEndEdit);
+            this.dataGridViewSPP.CellValuePushed += new System.Windows.Forms.DataGridViewCellValueEventHandler(this.dataGridViewSPP_CellValuePushed);
             // 
             // FormSPP
             // 
