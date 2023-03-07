@@ -247,12 +247,15 @@ namespace AplikasiPembayaranSPP.Master
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridViewPetugas.Rows[e.RowIndex];
-                currentID = row.Cells["IDPetugas"].Value.ToString();
-                inputUsername.Text = row.Cells["Username"].Value.ToString();
-                inputPassword.Text = row.Cells["Password"].Value.ToString();
-                inputConfirmPass.Text = row.Cells["Password"].Value.ToString();
-                inputNamaPetugas.Text = row.Cells["NamaPetugas"].Value.ToString();
-                inputLevel.Text = row.Cells["Level"].Value.ToString();
+                if (row.Cells["IDPetugas"].Value.ToString() != "1")
+                {
+                    currentID = row.Cells["IDPetugas"].Value.ToString();
+                    inputUsername.Text = row.Cells["Username"].Value.ToString();
+                    inputPassword.Text = row.Cells["Password"].Value.ToString();
+                    inputConfirmPass.Text = row.Cells["Password"].Value.ToString();
+                    inputNamaPetugas.Text = row.Cells["NamaPetugas"].Value.ToString();
+                    inputLevel.Text = row.Cells["Level"].Value.ToString();
+                }
             }
         }
 

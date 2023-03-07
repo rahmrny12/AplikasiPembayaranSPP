@@ -66,9 +66,7 @@ namespace AplikasiPembayaranSPP.Master
             using (SqlConnection conn = Helper.getConnected())
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM SPP WHERE " +
-                    "Tahun LIKE '%" + inputSearch.Text + "%' OR " +
-                    "Nominal LIKE '%" + inputSearch.Text + "%'", conn);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM SPP", conn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
 

@@ -38,8 +38,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.inputNominal = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.inputSearch = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewSPP = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSPP)).BeginInit();
@@ -174,29 +172,13 @@
             this.label4.TabIndex = 27;
             this.label4.Text = "Nominal";
             // 
-            // inputSearch
-            // 
-            this.inputSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.inputSearch.Location = new System.Drawing.Point(616, 18);
-            this.inputSearch.Name = "inputSearch";
-            this.inputSearch.Size = new System.Drawing.Size(172, 20);
-            this.inputSearch.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label1.Location = new System.Drawing.Point(558, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Search :";
-            // 
             // dataGridViewSPP
             // 
+            this.dataGridViewSPP.AllowUserToAddRows = false;
+            this.dataGridViewSPP.AllowUserToDeleteRows = false;
             this.dataGridViewSPP.AllowUserToOrderColumns = true;
+            this.dataGridViewSPP.AllowUserToResizeColumns = false;
+            this.dataGridViewSPP.AllowUserToResizeRows = false;
             this.dataGridViewSPP.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewSPP.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -218,8 +200,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.inputSearch);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridViewSPP);
             this.Name = "FormSPP";
             this.Text = "FormSPP";
@@ -228,7 +208,6 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSPP)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -239,8 +218,6 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnInsert;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox inputSearch;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridViewSPP;
         private System.Windows.Forms.ComboBox inputTahun;
         private System.Windows.Forms.Label label5;

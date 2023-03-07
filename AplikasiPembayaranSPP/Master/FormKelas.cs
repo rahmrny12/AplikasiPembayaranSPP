@@ -104,19 +104,33 @@ namespace AplikasiPembayaranSPP.Master
         }
         private void InsertData()
         {
-            using (SqlConnection conn = Helper.getConnected())
+            try
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO Kelas VALUES(" +
-                    "@NamaKelas, " +
-                    "@IDJurusan" +
-                    ")", conn);
-                cmd.Parameters.AddWithValue("@NamaKelas", inputNamaKelas.Text);
-                cmd.Parameters.AddWithValue("@IDJurusan", listKompetensiKeahlian.SelectedValue);
+                using (SqlConnection conn = Helper.getConnected())
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Kelas VALUES(" +
+                        "@NamaKelas, " +
+                        "@IDJurusan" +
+                        ")", conn);
+                    cmd.Parameters.AddWithValue("@NamaKelas", inputNamaKelas.Text);
+                    cmd.Parameters.AddWithValue("@IDJurusan", listKompetensiKeahlian.SelectedValue);
 
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Berhasil menambahkan Kelas.", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadKelas();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Berhasil menambahkan Kelas.", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadKelas();
+                }
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 2601)
+                {
+                    MessageBox.Show("Kelas dengan nama tersebut sudah ada.", "Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Gagal menambahkan Kelas. Error : " + ex.Message, "Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
