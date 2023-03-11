@@ -85,9 +85,9 @@
             // 
             // btnPrintLaporan
             // 
-            this.btnPrintLaporan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrintLaporan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPrintLaporan.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrintLaporan.Location = new System.Drawing.Point(778, 385);
+            this.btnPrintLaporan.Location = new System.Drawing.Point(12, 385);
             this.btnPrintLaporan.Name = "btnPrintLaporan";
             this.btnPrintLaporan.Size = new System.Drawing.Size(138, 43);
             this.btnPrintLaporan.TabIndex = 0;

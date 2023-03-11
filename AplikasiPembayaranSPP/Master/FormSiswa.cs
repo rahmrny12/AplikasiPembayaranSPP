@@ -42,6 +42,41 @@ namespace AplikasiPembayaranSPP.Master
             }
         }
 
+        private void InsertMonths()
+        {
+                using (SqlConnection conn = Helper.getConnected())
+                {
+                    conn.Open();
+                    SqlCommand checkMonthsCmd = new SqlCommand("SELECT * FROM Pembayaran WHERE NISN='" + inputNISN.Text + "' AND TahunDibayar='" + inputSPP.Text + "'", conn);
+                    SqlDataReader months = checkMonthsCmd.ExecuteReader();
+                    months.Read();
+                    if (!months.HasRows)
+                    {
+                        months.Close();
+                        var newMonths = Helper.getMonths();
+                        for (int i = 0; i <= newMonths.Count - 1; i++)
+                        {
+                            SqlCommand addMonthsCmd = new SqlCommand("INSERT INTO Pembayaran (NISN, TahunDibayar, BulanDibayar, IDSPP, JumlahBayar) VALUES(" +
+                                "@NISN, " +
+                                "@TahunDibayar, " +
+                                "@BulanDibayar, " +
+                                "@IDSPP, " +
+                                "@JumlahBayar" +
+                                ")", conn);
+                            addMonthsCmd.Parameters.AddWithValue("NISN", inputNISN.Text);
+                            addMonthsCmd.Parameters.AddWithValue("TahunDibayar", inputSPP.Text);
+                            addMonthsCmd.Parameters.AddWithValue("BulanDibayar", newMonths[i]);
+                            addMonthsCmd.Parameters.AddWithValue("IDSPP", inputSPP.SelectedValue);
+
+                            DataRowView spp = inputSPP.SelectedItem as DataRowView;
+                            addMonthsCmd.Parameters.AddWithValue("JumlahBayar", spp["Nominal"]);
+
+                            addMonthsCmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+        }
+
         private void LoadKelas()
         {
             using (SqlConnection conn = Helper.getConnected())
@@ -173,12 +208,13 @@ namespace AplikasiPembayaranSPP.Master
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Berhasil menambahkan siswa.", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadSiswa();
+                    InsertMonths();
                 }
                 catch (SqlException ex)
                 {
                     if (ex.Number == 2627)
                     {
-                        MessageBox.Show("Siswa dengan NISN tersebut sudah ada..!", "Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("NISN atau NIS tersebut sudah ada..!", "Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
@@ -213,6 +249,7 @@ namespace AplikasiPembayaranSPP.Master
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Berhasil mengedit siswa.", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadSiswa();
+                InsertMonths();
             }
         }
 

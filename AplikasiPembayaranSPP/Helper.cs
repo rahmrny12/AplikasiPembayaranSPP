@@ -34,20 +34,20 @@ namespace AplikasiPembayaranSPP
             return months;
         }
 
-        internal static String hashPass(String plaintext)
-        {
-            using (var algorithm = SHA256.Create())
-            {
-                var bytes = Encoding.UTF8.GetBytes(plaintext);
-                var hash = algorithm.ComputeHash(bytes);
+        //internal static String hashPass(String plaintext)
+        //{
+        //    using (var algorithm = SHA256.Create())
+        //    {
+        //        var bytes = Encoding.UTF8.GetBytes(plaintext);
+        //        var hash = algorithm.ComputeHash(bytes);
 
-                StringBuilder pass = new StringBuilder();
-                for (int i = 0; i < hash.Length; i++)
-                {
-                    pass.Append(hash[i].ToString("X2"));
-                }
-                return pass.ToString();
-            }
-        }
+        //        StringBuilder pass = new StringBuilder();
+        //        for (int i = 0; i < hash.Length; i++)
+        //        {
+        //            pass.Append(hash[i].ToString("X2"));
+        //        }
+        //        return pass.ToString();
+        //    }
+        //}
     }
 }

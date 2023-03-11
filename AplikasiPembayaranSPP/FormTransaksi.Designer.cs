@@ -152,6 +152,7 @@
             // 
             // inputKembalian
             // 
+            this.inputKembalian.Enabled = false;
             this.inputKembalian.Increment = new decimal(new int[] {
             1000,
             0,

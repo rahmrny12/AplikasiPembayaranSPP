@@ -47,8 +47,6 @@ namespace AplikasiPembayaranSPP
                     inputNoTelp.Text = siswa["NoTelp"].ToString();
                     inputAlamat.Text = siswa["Alamat"].ToString();
                     inputTahun.SelectedValue = siswa["IDSPP"].ToString();
-
-                    InsertMonths();
                 }
                 else
                 {
@@ -62,46 +60,9 @@ namespace AplikasiPembayaranSPP
             }
         }
 
-        private void InsertMonths()
-        {
-            if (inputNama.Text != "" && inputTahun.Text != "")
-            {
-                using (SqlConnection conn = Helper.getConnected())
-                {
-                    conn.Open();
-                    SqlCommand checkMonthsCmd = new SqlCommand("SELECT * FROM Pembayaran WHERE NISN='" + inputNISN.Text + "' AND TahunDibayar='" + inputTahun.Text + "'", conn);
-                    SqlDataReader months = checkMonthsCmd.ExecuteReader();
-                    months.Read();
-                    if (!months.HasRows)
-                    {
-                        months.Close();
-                        var newMonths = Helper.getMonths();
-                        for (int i = 0; i <= newMonths.Count - 1; i++)
-                        {
-                            SqlCommand addMonthsCmd = new SqlCommand("INSERT INTO Pembayaran (NISN, TahunDibayar, BulanDibayar, IDSPP, JumlahBayar) VALUES(" +
-                                "@NISN, " +
-                                "@TahunDibayar, " +
-                                "@BulanDibayar, " +
-                                "@IDSPP, " +
-                                "@JumlahBayar" +
-                                ")", conn);
-                            addMonthsCmd.Parameters.AddWithValue("NISN", inputNISN.Text);
-                            addMonthsCmd.Parameters.AddWithValue("TahunDibayar", inputTahun.Text);
-                            addMonthsCmd.Parameters.AddWithValue("BulanDibayar", newMonths[i]);
-                            addMonthsCmd.Parameters.AddWithValue("IDSPP", inputTahun.SelectedValue);
-                            addMonthsCmd.Parameters.AddWithValue("JumlahBayar", nominalSPP);
-
-                            addMonthsCmd.ExecuteNonQuery();
-                        }
-                    }
-                }
-            }
-        }
-
         private void FormTransaksi_Load(object sender, EventArgs e)
         {
             inputTanggalBayar.Value = DateTime.Now;
-            LoadTahunSPP();
             LoadKelas();
 
             bayarSppTable.Columns.Add("IDPembayaran");
@@ -180,7 +141,7 @@ namespace AplikasiPembayaranSPP
             using (SqlConnection conn = Helper.getConnected())
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM SPP", conn);
+                SqlCommand cmd = new SqlCommand("SELECT IDSPP, Tahun, Nominal FROM ViewSPPAktif WHERE NISN='" + inputNISN.Text + "' GROUP BY Tahun, IDSPP, Nominal", conn);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
 
@@ -211,12 +172,12 @@ namespace AplikasiPembayaranSPP
         private void inputNama_TextChanged(object sender, EventArgs e)
         {
             LoadHistoriPembayaran(inputNISN.Text);
+            LoadTahunSPP();
             LoadBulan();
         }
 
         private void inputTahun_SelectedIndexChanged(object sender, EventArgs e)
         {
-            InsertMonths();
             LoadHistoriPembayaran(inputNISN.Text);
             LoadBulan();
             using (SqlConnection conn = Helper.getConnected())

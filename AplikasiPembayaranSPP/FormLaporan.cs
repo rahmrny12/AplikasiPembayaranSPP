@@ -25,29 +25,13 @@ namespace AplikasiPembayaranSPP
 
         private void FormLaporan_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dB_UKK_PEMBAYARAN_SPPDataSet.ViewHistoriPembayaran' table. You can move, or remove it, as needed.
-            //this.viewHistoriPembayaranTableAdapter.Fill(this.dB_UKK_PEMBAYARAN_SPPDataSet.ViewHistoriPembayaran);
-
-            //reportViewer1.LocalReport.ReportPath = "ReportRiwayatTransaksi.rdlc";
-            //reportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("Histori", dB_UKK_PEMBAYARAN_SPPDataSet.ViewHistoriPembayaran));
-            //this.reportViewer1.RefreshReport();
-
-            //using (SqlConnection conn = Helper.getConnected())
-            //{
-                //SqlCommand cmd = new SqlCommand("SELECT * FROM ViewHistoriPembayaran", conn);
-                //SqlDataAdapter da = new SqlDataAdapter(cmd);
-                //DataTable dt = new DataTable();
-                //da.Fill(this.dB_UKK_PEMBAYARAN_SPPDataSet.ViewHistoriPembayaran);
-
-                reportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("DataSet1", dataLaporan));
-                reportViewer1.LocalReport.ReportPath = "ReportRiwayatTransaksi.rdlc";
-                PageSettings settings = new System.Drawing.Printing.PageSettings();
-                settings.Landscape = true;
-                settings.PaperSize = new System.Drawing.Printing.PaperSize("A4", 827, 1470);
-                reportViewer1.SetPageSettings(settings);
-                this.reportViewer1.RefreshReport();
-            //}
-
+            reportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("DataSet1", dataLaporan));
+            reportViewer1.LocalReport.ReportPath = "ReportRiwayatTransaksi.rdlc";
+            PageSettings settings = new System.Drawing.Printing.PageSettings();
+            settings.Landscape = true;
+            settings.PaperSize = new System.Drawing.Printing.PaperSize("A4", 827, 1470);
+            reportViewer1.SetPageSettings(settings);
+            this.reportViewer1.RefreshReport();
         }
     }
 }
